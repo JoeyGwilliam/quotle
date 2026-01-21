@@ -5,7 +5,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <p>
-          QUORTLE!
+          QUOTLE!
         </p>
       </header>
     </div>
