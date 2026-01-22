@@ -1,4 +1,4 @@
-﻿import {QuoteChallenge} from "../quote-challenge/quoteChallenge";
+﻿import {PersonQuoteChallenge} from "../person-quote-challenge/personQuoteChallenge";
 import {DailyChallenge} from "./dailyChallenge";
 
 /**

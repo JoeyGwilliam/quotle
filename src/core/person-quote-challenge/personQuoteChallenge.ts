@@ -4,7 +4,7 @@ import {Person} from "./person";
 /**
  * A challenge where a person must be guessed by their quotes.
  */
-export class QuoteChallenge {
+export class PersonQuoteChallenge {
     /**
      * A challenge for a single day.
      * @param quotes - Quotes by the person

@@ -1,4 +1,4 @@
-﻿import {QuoteChallenge} from "../quote-challenge/quoteChallenge";
+﻿import {PersonQuoteChallenge} from "../person-quote-challenge/personQuoteChallenge";
 
 /**
  * A challenge for a given day.
@@ -7,11 +7,11 @@ export class DailyChallenge {
     /**
      * A challenge for a single day.
      * @param day - The day this challenge is for.
-     * @param quoteChallenge - a QuoteChallenge for the day.
+     * @param personQuoteChallenge - a PersonQuoteChallenge for the day.
      */
     constructor(
         public day: Date,
-        public quoteChallenge: QuoteChallenge,
+        public personQuoteChallenge: PersonQuoteChallenge,
     ) {}
 
     isSameDay(date: Date): boolean {

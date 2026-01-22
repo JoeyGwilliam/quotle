@@ -11,3 +11,4 @@ root.render(
     <App />
   </React.StrictMode>
 );
+document.body.style.backgroundColor = "#301f17";
