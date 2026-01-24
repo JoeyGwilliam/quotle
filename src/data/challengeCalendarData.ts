@@ -7,7 +7,7 @@ import {Person} from "../core/person-quote-challenge/person";
 
 const _DAILY_CHALLENGES: DailyChallenge[] = [
     new DailyChallenge(
-        new Date("2026-01-22"),
+        new Date("2026-01-23"),
         new PersonQuoteChallenge(
             [
                 new Quote(
@@ -39,35 +39,19 @@ const _DAILY_CHALLENGES: DailyChallenge[] = [
         )
     ),
     new DailyChallenge(
-        new Date("2026-01-23"),
+        new Date("2026-01-24"),
         new PersonQuoteChallenge(
             [
                 new Quote(
-                    "[I ask] the question of the role the police should play, if any, in civil society. " +
-                    "Who are they protecting and from what?",
-                    "1986"
+                    "Oppa Gangnam style!!",
+                    "2010s"
                 ),
                 new Quote(
-                    "We accept and respect the outcome of the referendum.",
-                    "2016"
-                ),
-                new Quote(
-                    "The only time he ran in a competitive election, he got trounced by the former prime " +
-                    "minister, who herself got beaten by lettuce!",
-                    "2022",
-                ),
-                new Quote(
-                    "I can't wait for them to stop their antics, frankly.",
-                    "2023",
-                    "On the Just Stop Oil protests"
-                ),
-                new Quote(
-                    "I call again for the return of the sausages.",
-                    "2024",
-                    "The intended word was 'hostages'"
+                    "eyyyyyyyyyyy sexy lady!",
+                    "2010s"
                 ),
             ],
-            new Person("Kier Starmer")
+            new Person("PSY")
         )
     ),
 ]

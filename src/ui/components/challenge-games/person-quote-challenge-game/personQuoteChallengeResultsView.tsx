@@ -1,11 +1,11 @@
 import {JSX, useState} from "react";
 
-import {PersonQuoteChallengeResults} from "../../../../core/person-quote-challenge/personQuoteChallengeResults";
 import {Person} from "../../../../core/person-quote-challenge/person";
+import {PersonQuoteChallengeGameState} from "@/core/person-quote-challenge/personQuoteChallengeGameState";
 
 
 interface PersonQuoteChallengeResultsViewProps {
-    results: PersonQuoteChallengeResults;
+    gameState: PersonQuoteChallengeGameState;
     person: Person;
 }
 
@@ -14,10 +14,10 @@ interface PersonQuoteChallengeResultsViewProps {
  * @param personQuoteChallenge - The DailyChallenge to play.
  * @constructor
  */
-export function PersonQuoteChallengeResultsView({ results, person }: PersonQuoteChallengeResultsViewProps): JSX.Element {
+export function PersonQuoteChallengeResultsView({ gameState, person }: PersonQuoteChallengeResultsViewProps): JSX.Element {
     let winOrLoseText: string;
 
-    if (results.wonGame) {
+    if (gameState.guessedCorrect) {
         winOrLoseText = "You win!";
     }
     else {
@@ -45,7 +45,7 @@ export function PersonQuoteChallengeResultsView({ results, person }: PersonQuote
             </div>
 
             <div>
-                Incorrect Guesses: {results.incorrectGuesses}
+                Guesses: {gameState.guesses}
             </div>
 
             <div>

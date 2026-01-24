@@ -19,8 +19,6 @@ export class ChallengeCalendar {
      */
     getDailyChallenge(date: Date) : DailyChallenge
     {
-        // TODO: create a hash map on init from date to daily challenges to make this quicker?
-        //  Only expect to do this once per load though...
         for (const dailyChallenge of this.dailyChallenges) {
             if (dailyChallenge.isSameDay(date)) {
                 return dailyChallenge;

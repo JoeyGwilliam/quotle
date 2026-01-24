@@ -14,7 +14,6 @@ export class PersonQuoteChallenge {
     constructor(
         public quotes: Quote[],
         public person: Person,
-        public requiredContext: string | null = null
     ) {
     }
 }

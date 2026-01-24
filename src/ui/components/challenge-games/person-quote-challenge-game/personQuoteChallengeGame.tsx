@@ -1,12 +1,13 @@
-import {JSX, useState} from "react";
+import React, {JSX} from "react";
 import {PersonQuoteChallenge} from "../../../../core/person-quote-challenge/personQuoteChallenge";
 import {GuessControl} from "../controls/guessControl";
 import {MultiQuoteView} from "../views/multiQuoteView";
-import {PersonQuoteChallengeResults} from "../../../../core/person-quote-challenge/personQuoteChallengeResults";
+import {PersonQuoteChallengeGameState} from "../../../../core/person-quote-challenge/personQuoteChallengeGameState";
 
 interface PersonQuoteChallengeProps {
     personQuoteChallenge: PersonQuoteChallenge;
-    onGameFinished?: (results: PersonQuoteChallengeResults) => void;
+    personQuoteChallengeGameState: PersonQuoteChallengeGameState;
+    onPersonQuoteChallengeGameStateChanged: (newState: PersonQuoteChallengeGameState) => void;
 }
 
 /** A component that allows the user to play a daily challenge.
@@ -15,38 +16,35 @@ interface PersonQuoteChallengeProps {
  * @param onGameFinished - Action to perform when the game is finished.
  * @constructor
  */
-export function PersonQuoteChallengeGame({ personQuoteChallenge, onGameFinished }: PersonQuoteChallengeProps): JSX.Element {
-    const [quoteIndex, setQuoteIndex] = useState<number>(0);
+export function PersonQuoteChallengeGame(
+    { personQuoteChallenge, personQuoteChallengeGameState, onPersonQuoteChallengeGameStateChanged }: PersonQuoteChallengeProps
+): JSX.Element {
+    const revealedQuotes: boolean[] = personQuoteChallenge.quotes.map((_, index) => index <= personQuoteChallengeGameState.guesses)
 
-    const revealedQuotes: boolean[] = personQuoteChallenge.quotes.map((_, index) => index <= quoteIndex)
-    const isLastQuote = quoteIndex == personQuoteChallenge.quotes.length - 1;
-
-    function handleGameFinished(guessIsCorrect: boolean): void{
-        const incorrectGuesses: number = guessIsCorrect ? quoteIndex : quoteIndex + 1;
-        const results = new PersonQuoteChallengeResults(incorrectGuesses, guessIsCorrect);
-        setQuoteIndex(personQuoteChallenge.quotes.length);
-        if (onGameFinished){
-            onGameFinished(results);
-        }
-    }
+    const isLastGuess: boolean = personQuoteChallengeGameState.guesses == personQuoteChallenge.quotes.length - 1
 
     function handleSkip(): void{
-        if (isLastQuote){
-            handleGameFinished(false);
-        }
-        else {
-            setQuoteIndex(quoteIndex + 1);
-        }
+        if (personQuoteChallengeGameState.finishedGame) return;
+        onPersonQuoteChallengeGameStateChanged(
+            new PersonQuoteChallengeGameState(
+                personQuoteChallengeGameState.guesses + 1,
+                personQuoteChallengeGameState.guessedCorrect,
+                isLastGuess
+            )
+        )
     }
 
     function handleGuess(guess: string): void{
+        if (personQuoteChallengeGameState.finishedGame) return;
         const guessIsCorrect: boolean = isGuessCorrect(guess, personQuoteChallenge.person.name)
-        if (guessIsCorrect || isLastQuote){
-            handleGameFinished(guessIsCorrect);
-        }
-        else {
-            setQuoteIndex(quoteIndex + 1);
-        }
+
+        onPersonQuoteChallengeGameStateChanged(
+            new PersonQuoteChallengeGameState(
+                personQuoteChallengeGameState.guesses + 1,
+                guessIsCorrect,
+                guessIsCorrect || isLastGuess
+            )
+        )
     }
 
     return (
